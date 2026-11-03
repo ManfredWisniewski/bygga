@@ -5,3 +5,6 @@
 	path = +wit-agents
 	url = https://github.com/ManfredWisniewski/wit-agents.git
 	branch = main
+[submodule "biti"]
+	path = biti
+	url = https://github.com/ManfredWisniewski/biti

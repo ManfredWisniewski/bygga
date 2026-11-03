@@ -281,3 +281,7 @@ packages/tokens/build/
 # Obsidian runtime state
 .obsidian/workspace.json
 .obsidian/plugins/recent-files-obsidian/
+
+# Tauri
+src-tauri/gen/schemas
+*.tsbuildinfo
