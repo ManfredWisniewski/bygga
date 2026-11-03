@@ -39,6 +39,20 @@ Requires Node LTS (`.nvmrc` = 22), pnpm and — for native builds — Rust
 plus the platform toolchain (MSVC/WebView2 on Windows; Android SDK for
 `tauri android`; Xcode on macOS for `tauri ios`).
 
+### Windows toolchain (Tauri)
+
+Tauri needs MSVC on Windows (admin PowerShell, once):
+
+```powershell
+winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive --norestart" --accept-package-agreements --accept-source-agreements
+rustup target add x86_64-pc-windows-msvc
+rustup override set stable-x86_64-pc-windows-msvc   # scoped to this repo
+```
+
+Without MSVC, `cargo check` and `cargo test --lib` still work on the
+`windows-gnu` toolchain, but `tauri dev`/`tauri build` cannot link the
+app (GNU `ld` hits its export limit). WebView2 ships with Windows 10/11.
+
 ## Run
 
 ```powershell
