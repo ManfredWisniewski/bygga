@@ -1,10 +1,11 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { APP } from '~/lib/app'
 
 const resources = {
   en: {
     translation: {
-      'app.name': 'Bygga',
+      'app.name': APP.name,
       'nav.home': 'Home',
       'nav.about': 'About',
       'home.title': 'Generic WIT tool shell',
@@ -22,7 +23,7 @@ const resources = {
   },
   de: {
     translation: {
-      'app.name': 'Bygga',
+      'app.name': APP.name,
       'nav.home': 'Start',
       'nav.about': 'Info',
       'home.title': 'Generische WIT-Werkzeug-Shell',
@@ -42,11 +43,11 @@ const resources = {
 
 void i18n.use(initReactI18next).init({
   resources,
-  lng: localStorage.getItem('bygga.language') ?? 'en',
+  lng: localStorage.getItem(`${APP.storage}language`) ?? 'en',
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
 })
 
-i18n.on('languageChanged', (lng) => localStorage.setItem('bygga.language', lng))
+i18n.on('languageChanged', (lng) => localStorage.setItem(`${APP.storage}language`, lng))
 
 export default i18n

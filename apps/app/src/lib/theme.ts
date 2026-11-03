@@ -1,6 +1,8 @@
 export type ThemeChoice = 'system' | 'light' | 'dark'
 
-const KEY = 'bygga.theme'
+import { APP } from '~/lib/app'
+
+const KEY = `${APP.storage}theme`
 const MEDIA = '(prefers-color-scheme: dark)'
 
 export function getThemeChoice(storage: Pick<Storage, 'getItem'> = localStorage): ThemeChoice {
