@@ -282,6 +282,10 @@ packages/tokens/build/
 .obsidian/workspace.json
 .obsidian/plugins/recent-files-obsidian/
 
+# App sources must stay tracked — the generic Python `lib/` rule above
+# would otherwise hide apps/app/src/lib/ and ship unversioned code.
+!/apps/app/src/lib/
+
 # Tauri
 src-tauri/gen/schemas
 *.tsbuildinfo

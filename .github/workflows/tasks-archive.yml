@@ -20,6 +20,16 @@ jobs:
         with:
           ref: wip
           submodules: true
+          sparse-checkout: |
+            +team/+tasks
+            +wit-agents/skills
+      - name: Checkout trusted scripts from main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: _trusted
+          sparse-checkout: |
+            scripts
       - name: Sync agent skills
         run: |
           if [ -d "+wit-agents/skills" ]; then
@@ -29,7 +39,7 @@ jobs:
               [ -d "$d" ] && cp -r "$d" .agents/skills/
             done
           fi
-      - run: python scripts/archive-done-tasks.py
+      - run: python _trusted/scripts/archive-done-tasks.py
       - name: Commit and push to wip
         run: |
           git config user.name "github-actions[bot]"
