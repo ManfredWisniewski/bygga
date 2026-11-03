@@ -1,9 +1,11 @@
 # Update a repository's managed files from +wit/common/templates/common/.
 #
 # Managed set (copied verbatim, overwrite allowed):
-#   .github/workflows/, scripts/, .gitattributes
+#   .github/workflows/, scripts/, .gitattributes, .devin/
 # Everything else in the template (README, AGENTS.md, .gitignore, +intent,
 # +team, .vscode, .obsidian) is repo-specific and is NOT touched.
+# (.devin/ holds hooks the agent platform executes at session start - it must
+# stay reconciled with the template, not drift per repo.)
 #
 # Usage (inside the target repo, on your persona branch):
 #   scripts\update-from-templates.ps1            # report diffs, copy files, stage
@@ -17,7 +19,7 @@ try {
     $tpl = Join-Path $repo '+wit/common/templates/common'
     if (-not (Test-Path $tpl)) { throw "template tree not found at $tpl - is +wit checked out?" }
 
-    $targets = @('.github/workflows', 'scripts', '.gitattributes')
+    $targets = @('.github/workflows', 'scripts', '.gitattributes', '.devin')
     $changed = @()
     foreach ($t in $targets) {
         $src = Join-Path $tpl $t
@@ -28,8 +30,8 @@ try {
         Copy-Item (Join-Path $src '*') $dst -Recurse -Force
         $changed += $t
     }
-    git add -A
-    $pending = git status --porcelain
+    git add -- $targets
+    $pending = git status --porcelain -- $targets
     if ($pending) {
         Write-Output "updated managed files: $($changed -join ', ')"
         Write-Output ($pending | Out-String)
