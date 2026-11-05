@@ -13,7 +13,6 @@
       "**/*.tsbuildinfo",
       "biti",
       "+wit",
-      "+wit-agents",
       "+team",
       ".agents",
       "scripts"

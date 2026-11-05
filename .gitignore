@@ -1,4 +1,4 @@
-# AI related — .agents/* is local tooling; .agents/skills/ is synced from +wit-agents and MUST be committed
+# AI related — .agents/* is local tooling; .agents/skills/ is synced from +wit/agents and MUST be committed
 /.agents/*
 !/.agents/skills/
 **/+intent/**/__*/

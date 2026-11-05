@@ -22,7 +22,7 @@ jobs:
           submodules: true
           sparse-checkout: |
             +team/+tasks
-            +wit-agents/skills
+            +wit/agents/skills
       - name: Checkout trusted scripts from main
         uses: actions/checkout@v4
         with:
@@ -32,10 +32,10 @@ jobs:
             scripts
       - name: Sync agent skills
         run: |
-          if [ -d "+wit-agents/skills" ]; then
+          if [ -d "+wit/agents/skills" ]; then
             rm -rf .agents/skills
             mkdir -p .agents/skills
-            for d in +wit-agents/skills/*/*/; do
+            for d in +wit/agents/skills/*/*/; do
               [ -d "$d" ] && cp -r "$d" .agents/skills/
             done
           fi

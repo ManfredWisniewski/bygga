@@ -15,8 +15,8 @@ the relevant convention or best-practice files. These shared definitions
 apply independently of which skill or AI agent is performing the work.
 
 - `+intent/` — intent, decisions and acceptance criteria for this project.
-- `+wit/` — submodule: definitions shared by all WIT projects.
-- `+wit-agents/` — submodule: shared agent rules and skill sources.
+- `+wit/` — submodule: definitions shared by all WIT projects (agent
+  rules and skill sources live in `+wit/agents/`).
 
 ## Layout
 
